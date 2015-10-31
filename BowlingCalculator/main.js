@@ -1,67 +1,143 @@
-$(document).ready(function(){
-    var ScoreBowling = function () {
-        this.throwBall = [];
-        this.currentThrowBall = 0;
-    };
+var ScoreBowling = function () {
+    this.throwBall = [];
+    this.currentThrowBall = 0;
+    this.frame = 0;
+    this.frameIndex = 0;
+    this.totalScore = 0;
+    this.strikeCounter = 0;
+};
 
-    ScoreBowling.prototype.roll = function (pins) {
-        this.throwBall[this.currentThrowBall++] = pins;
-    };
+ScoreBowling.prototype.roll = function (pins) {
+    this.throwBall[this.currentThrowBall++] = pins;
+};
 
+ScoreBowling.prototype.nextFrame = function () {
+    this.frame++;
+};
 
-    ScoreBowling.prototype.score = function () {
-        var score = 0;
-        var frameIndex = 0;
-        var self = this;
+ScoreBowling.prototype.score = function () {
+    debugger;
+    var score = 0,
+        self = this;
 
-        function sumOfBallsInGameFrame() {
-            return self.throwBall[frameIndex] + self.currentThrowBall[frameIndex + 1];
+    function sumOfBallsInGameFrame() {
+        return (self.throwBall[self.frameIndex] + self.throwBall[self.frameIndex + 1]);
+    }
+
+    function strikeBonus() {
+        if(self.strikeCounter === 0){
+            return 0;
         }
-
-        function strikeBonus() {
-            return self.throwBall[frameIndex + 1] + self.throwBall[frameIndex + 2];
+        else if(self.strikeCounter === 1){
+            return self.throwBall[self.frameIndex];
         }
-
-        function spareBonus() {
-            return self.throwBall[frameIndex + 2];
+        else{
+            return self.throwBall[self.frameIndex] + self.throwBall[self.frameIndex];
         }
+    }
 
-        function isStrike() {
-            return self.throwBall[frameIndex] === 10;
+    function spareBonus() {
+        if(self.frameIndex === 0 || self.frameIndex === 1){
+            return 0;
         }
-
-        function isSpare() {
-            return self.throwBall[frameIndex] + self.throwBall[frameIndex + 1] === 10;
+        else{
+            return self.throwBall[self.frameIndex];
         }
+    }
 
-        for (var frame = 0; frame < 10; frame++) {
-            if (isStrike()) {
-                score += 10 + strikeBonus();
-                frameIndex++;
+    function isStrike() {
+        return self.throwBall[self.frameIndex] === 10;
+    }
+
+    function isSpare() {
+        return self.throwBall[self.frameIndex] + self.throwBall[self.frameIndex + 1] === 10;
+    }
+
+    if (isStrike()) {
+        score += 10 + strikeBonus();
+        self.frameIndex++;
+    }
+    else if (isSpare()) {
+        score += 10 + spareBonus();
+        self.frameIndex += 2;
+    }
+    else {
+        score += sumOfBallsInGameFrame();
+        self.frameIndex += 2;
+    }
+    return score;
+};
+
+var player = new ScoreBowling();
+
+var scoreButtons = $(".score-buttons input"),
+    counter = 0;
+
+scoreButtons.each(function(j){
+    $(this).on("click", function(){
+        debugger;
+        var item = $(this).val(),
+            max = 11,
+            $frame = $(".half-frame");
+        ++counter;
+        if (counter%2 === 1){
+            if (item !== "X"){
+                $('.spare').css("visibility", "visible");
+                $('.strike').css("visibility", "hidden");
+                for (var i = max - item; i < max; i++){
+                    scoreButtons.eq(i - 1).hide();
+                }
+                $frame.eq(player.currentThrowBall).attr("value", item);
+                player.roll(parseInt(item));
+                player.strikeCounter = 0;
+                if(player.frameIndex > 20){
+                    scoreButtons.hide();
+                }
             }
-            else if (isSpare()) {
-                score += 10 + spareBonus();
-                frameIndex += 2;
+            else{
+                scoreButtons.show();
+                $frame.eq(player.currentThrowBall + 1).attr("value", item);
+                item = 10;
+                player.roll(parseInt(item));
+                var score = player.score();
+                player.totalScore += score;
+                $(".total input").eq(player.frame).attr("value", score);
+                $(".total-score input").eq(0).attr("value", player.totalScore);
+                player.nextFrame();
+                counter = 0;
+                player.currentThrowBall++;
+                player.frameIndex++;
+                player.strikeCounter++;
+                if(player.frameIndex > 20){
+                    scoreButtons.hide();
+                }
             }
-            else {
-                score += sumOfBallsInGameFrame();
-                frameIndex += 2;
+
+        }
+        else{
+            scoreButtons.show();
+            $('.spare').css("visibility", "hidden");
+            $('.strike').css("visibility", "visible");
+            $frame.eq(player.currentThrowBall).attr("value", item);
+            if(item === "/"){
+                item = 10 - $frame.eq(player.currentThrowBall - 1).val();
+            }
+            player.roll(parseInt(item));
+            var score = player.score();
+            player.totalScore += score;
+            $(".total input").eq(player.frame).attr("value", score);
+            $(".total-score input").eq(0).attr("value", player.totalScore);
+            player.nextFrame();
+            if(player.frameIndex > 20){
+                scoreButtons.hide();
             }
         }
-        return score;
-    };
-
-    var scoreButtons = $(".score-buttons input");
-    scoreButtons.each(function(i){
-        $(this).on("click", function(){
-            $(".one").attr("value",$(this).val());
-
-            m=10;
-            for( m - this; i<m; i++){
-                delete this.button(a)
-            }
-
-
-        })
     });
+});
+
+$(".new-game").on("click", function(){
+    scoreButtons.show();
+    $(".table input").attr("value"," ");
+    player = new ScoreBowling();
+
 });

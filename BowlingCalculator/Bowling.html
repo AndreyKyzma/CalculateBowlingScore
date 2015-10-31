@@ -5,7 +5,6 @@
     <title>Bowling Calculator</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="main.js"></script>
 </head>
 <body>
 <header>
@@ -19,10 +18,10 @@
                 <tr>
                     <td>
                         <div class="left-coins">
-                            <input type="text" class="one"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="right-coins">
-                            <input type="text"/>
+                            <input type="text"  class="half-frame"/>
                         </div>
                         <div class="total">
                             <input type="text"/>
@@ -30,10 +29,10 @@
                     </td>
                     <td>
                         <div class="left-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="right-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="total">
                             <input type="text"/>
@@ -41,10 +40,10 @@
                     </td>
                     <td>
                         <div class="left-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="right-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="total">
                             <input type="text"/>
@@ -52,10 +51,10 @@
                     </td>
                     <td>
                         <div class="left-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="right-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="total">
                             <input type="text"/>
@@ -63,10 +62,10 @@
                     </td>
                     <td>
                         <div class="left-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="right-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="total">
                             <input type="text"/>
@@ -74,10 +73,10 @@
                     </td>
                     <td>
                         <div class="left-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="right-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="total">
                             <input type="text"/>
@@ -85,10 +84,10 @@
                     </td>
                     <td>
                         <div class="left-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="right-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="total">
                             <input type="text"/>
@@ -96,10 +95,10 @@
                     </td>
                     <td>
                         <div class="left-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="right-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="total">
                             <input type="text"/>
@@ -107,10 +106,10 @@
                     </td>
                     <td>
                         <div class="left-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="right-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="total">
                             <input type="text"/>
@@ -118,13 +117,13 @@
                     </td>
                     <td>
                         <div class="left-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="right-coins tenth-frame">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="right-coins">
-                            <input type="text"/>
+                            <input type="text" class="half-frame"/>
                         </div>
                         <div class="total tenth-total">
                             <input type="text"/>
@@ -142,27 +141,30 @@
         <div class="score-buttons">
             <table>
                 <tr>
-                    <td><input type="button" value="1" /></td>
-                    <td><input type="button" value="2" /></td>
-                    <td><input type="button" value="3" /></td>
-                    <td><input type="button" value="4" /></td>
-                    <td><input type="button" value="5" /></td>
+                    <td><div><input type="button" value="0" /></div></td>
+                    <td><div><input type="button" value="1" /></div></td>
+                    <td><div><input type="button" value="2" /></div></td>
+                    <td><div><input type="button" value="3" /></div></td>
+                    <td><div><input type="button" value="4" /></div></td>
+                    <td><div><input type="button" value="5" /></div></td>
                 </tr>
                 <tr>
-                    <td><input type="button" value="6" /></td>
-                    <td><input type="button" value="7" /></td>
-                    <td><input type="button" value="8" /></td>
-                    <td><input type="button" value="9" /></td>
-                    <td><input type="button" value="10" /></td>
+                    <td><div><input type="button" value="6" /></div></td>
+                    <td><div><input type="button" value="7" /></div></td>
+                    <td><div><input type="button" value="8" /></div></td>
+                    <td><div><input type="button" value="9" /></div></td>
+                    <td><div><input type="button" value="/" class="spare"/></div></td>
+                    <td><div><input type="button" value="X"  class="strike"/></div></td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="button" value="New Game"/>
+                        <div><button class="new-game">New Game</button></div>
                     </td>
                 </tr>
             </table>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="main.js"></script>
 </body>
 </html>

@@ -14,8 +14,8 @@ header h1 {
 }
 
 #calculator{
-	background-color: #32ffc2;
-	border: 2px dashed grey;
+	background-color: #faff12;
+	border: 2px dashed #180e80;
 	margin: 0 auto;
 	width: 1024px;
 }
@@ -64,7 +64,8 @@ table div.left-coins{
 }
 
 .tenth-frame{
-	border-left: none;
+	border-right: none;
+	float: left;
 }
 
 .tenth-total input{
@@ -76,9 +77,20 @@ table div.left-coins{
 	width: 62px;
 }
 
-.score-buttons input[type="button"]{
-	background-color: #76a4ff;
+.score-buttons div{
+	background-color: #fff;
+	height: 40px;
+	overflow: hidden;
+	width: 100px;
+}
+
+.score-buttons input[type="button"], .score-buttons button{
+	background-color: #0d23ff;
 	cursor: pointer;
 	height: 40px;
 	width: 100px;
+}
+
+.spare{
+	visibility: hidden;
 }
