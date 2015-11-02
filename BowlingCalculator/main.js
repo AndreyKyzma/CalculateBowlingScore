@@ -1,3 +1,4 @@
+/*initialization */
 var ScoreBowling = function () {
     this.throwBall = [];
     this.currentThrowBall = 0;
@@ -19,11 +20,11 @@ ScoreBowling.prototype.score = function () {
     debugger;
     var score = 0,
         self = this;
-
+/*calculate sum of Balls*/
     function sumOfBallsInGameFrame() {
         return (self.throwBall[self.frameIndex] + self.throwBall[self.frameIndex + 1]);
     }
-
+/*calculate strikeBonus*/
     function strikeBonus() {
         if(self.strikeCounter === 0){
             return 0;
@@ -35,7 +36,7 @@ ScoreBowling.prototype.score = function () {
             return self.throwBall[self.frameIndex] + self.throwBall[self.frameIndex];
         }
     }
-
+/*calculate spareBonus*/
     function spareBonus() {
         if(self.frameIndex === 0 || self.frameIndex === 1){
             return 0;
@@ -44,11 +45,11 @@ ScoreBowling.prototype.score = function () {
             return self.throwBall[self.frameIndex];
         }
     }
-
+/*check method isStrike */
     function isStrike() {
         return self.throwBall[self.frameIndex] === 10;
     }
-
+/*check method isSpare*/
     function isSpare() {
         return self.throwBall[self.frameIndex] + self.throwBall[self.frameIndex + 1] === 10;
     }
@@ -72,7 +73,7 @@ var player = new ScoreBowling();
 
 var scoreButtons = $(".score-buttons input"),
     counter = 0;
-
+/*Buttons logic*/
 scoreButtons.each(function(j){
     $(this).on("click", function(){
         debugger;
@@ -134,7 +135,7 @@ scoreButtons.each(function(j){
         }
     });
 });
-
+/* logic for NewGame button */
 $(".new-game").on("click", function(){
     scoreButtons.show();
     $(".table input").attr("value"," ");

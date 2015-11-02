@@ -3,7 +3,7 @@ body {
 }
 
 header h1 {
-	color: #00f;
+	color: #1dff03;
 	text-align: center;
 }
 
@@ -14,8 +14,8 @@ header h1 {
 }
 
 #calculator{
-	background-color: #faff12;
-	border: 2px dashed #180e80;
+	background-color: #19ff13;
+	border: 2px dashed #807b05;
 	margin: 0 auto;
 	width: 1024px;
 }
